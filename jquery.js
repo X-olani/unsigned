@@ -4,7 +4,7 @@ $(document).ready(function() {
   let playSong;
   let picture = [
     {
-      name: "XO-lani",
+      name: "XO",
       nickname: "XO-lani",
       image: "music/Trash/Trash (EP).jpg",
       songs: [{ song_name: "Intro.mp3" }],
@@ -15,7 +15,9 @@ $(document).ready(function() {
         { song_name: "Sandwiches_and_coffee.mp3" },
         { song_name: "Ugly.mp3" }
       ],
-      path: "music/Trash/"
+      path: "music/Trash/",
+      Bio:
+        "This Ep/album is absolutely terrible and that's what I was going for. After listing to this Ep/album(I don't know) you will appreciate the good sh*t, like that song you keep on skipping. I hope it causes you to pull a weird face."
     }
   ];
 
@@ -58,7 +60,7 @@ $(document).ready(function() {
       );
       $("#description").empty();
       $("#description").append(() => {
-        return "<h2>" + to.name + "</h2>" + "<p>nothing</p>";
+        return "<h2>" + to.name + "</h2>" + "<p id='bio'> " + to.Bio + "</p>";
       });
 
       $("#showSongs").empty();
@@ -226,7 +228,10 @@ $(document).ready(function() {
             to.image +
             "'></img"
         );
-
+        $("#description").empty();
+        $("#description").append(() => {
+          return "<h2>" + to.name + "</h2>" + "<p id='bio'> " + to.Bio + "</p>";
+        });
         $("#showSongs").empty();
         $("#showSongs").append(
           to.songs.map((song, index) => {
