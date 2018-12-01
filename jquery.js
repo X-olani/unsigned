@@ -31,8 +31,8 @@ $(document).ready(function() {
         "This Ep/album is absolutely terrible and that's what I was going for. After listing to this Ep/album(I don't know) you will appreciate the good sh*t, like that song you keep on skipping. I hope it causes you to pull a weird face."
     },
     {
-      name: "Tydo",
-      nickname: "Tydo",
+      name: "Taydo",
+      nickname: "Taydo",
       image: "music/tydo/tydo2.jpg",
       songs: [{ song_name: "Be_Brave.mp3" }],
       album: [],
