@@ -6,8 +6,9 @@ $(document).ready(function() {
     {
       name: "XO",
       nickname: "XO-lani",
-      image: "music/Trash/Trash (EP).jpg",
-      songs: [{ song_name: "Intro.mp3" }],
+      image: "music/xo/Trash/Trash (EP).jpg",
+      songs: [{ song_name: "Missed_birthday_days.mp3" }],
+
       album: [
         { song_name: "Intro.mp3" },
         { song_name: "Lotus_flower.mp3" },
@@ -15,9 +16,32 @@ $(document).ready(function() {
         { song_name: "Sandwiches_and_coffee.mp3" },
         { song_name: "Ugly.mp3" }
       ],
-      path: "music/Trash/",
+      album_Song_name: [
+        { songName: "Intro" },
+        { songName: "Lotus flower" },
+        { songName: "Neck.mp3" },
+        { songName: "Sandwiches and coffee" },
+        { songName: "Ugly" }
+      ],
+      nameOfSong: [{ songName: "Missed birthday days" }],
+      song_path: "music/xo/",
+      album_path: "music/xo/Trash/",
+
       Bio:
         "This Ep/album is absolutely terrible and that's what I was going for. After listing to this Ep/album(I don't know) you will appreciate the good sh*t, like that song you keep on skipping. I hope it causes you to pull a weird face."
+    },
+    {
+      name: "Tydo",
+      nickname: "Tydo",
+      image: "music/tydo/tydo2.jpg",
+      songs: [{ song_name: "Be_Brave.mp3" }],
+      album: [],
+      album_Song_name: [],
+      nameOfSong: [{ songName: "Be Brave" }],
+
+      song_path: "music/tydo/",
+      album_path: "music/tydo/AlbumForTydo/",
+      Bio: "I make music just for fun"
     }
   ];
 
@@ -49,7 +73,7 @@ $(document).ready(function() {
     $("#" + i).click(() => {
       let to = picture[i];
       let playSelected;
-      console.log(to);
+
       $("#image-Of-artist").empty();
       $("#song").fadeIn();
       $("#image-Of-artist").append(
@@ -65,12 +89,12 @@ $(document).ready(function() {
 
       $("#showSongs").empty();
       $("#showSongs").append(
-        to.songs.map((song, index) => {
+        to.nameOfSong.map((song, index) => {
           return (
             `<div class='song-list' id='play-this` +
             index +
             `'> <p>` +
-            song.song_name +
+            song.songName +
             ` </p>
           </div>
         
@@ -86,15 +110,15 @@ $(document).ready(function() {
 
       $("#show_songs").click(() => {
         $("#showSongs").empty();
-        console.log("hey");
-        let artistob = picture[i].songs;
+
+        let artistob = picture[i].nameOfSong;
         $("#showSongs").append(
           artistob.map((songList, index) => {
             return (
               `<div class='song-list' id='play-this` +
               index +
               `'> <p>` +
-              songList.song_name +
+              songList.songName +
               ` </p>
   </div>
 
@@ -105,19 +129,19 @@ $(document).ready(function() {
 
         for (let selected = 0; selected < picture[i].songs.length; selected++) {
           $("#play-this" + selected).click(() => {
+            $(".song-list").removeClass("ifSelected");
+            $("#play-this" + selected).addClass("ifSelected");
             $(".navbar").empty();
             $(".navbar").append(
               `<p> Now playing: ` +
-                picture[i].songs[selected].song_name +
+                picture[i].nameOfSong[selected].songName +
                 `</p>
               <audio style='width:100%' controls autoPlay>
 <source src='` +
-                picture[i].path +
+                picture[i].song_path +
                 picture[i].songs[selected].song_name +
-                `'><.s</audio>`
+                `'></audio>`
             );
-
-            console.log(selected);
           });
         }
       });
@@ -127,8 +151,8 @@ $(document).ready(function() {
       $("#show_album").click(() => {
         $("#showSongs").empty();
 
-        let artistob = picture[i].album;
-        console.log(artistob);
+        let artistob = picture[i].album_Song_name;
+
         if (artistob.length === 0) {
           $("#showSongs").append("<div><h3>No Album</h3></div>");
         } else {
@@ -138,7 +162,7 @@ $(document).ready(function() {
                 `<div class='song-list' id='play-this` +
                 index +
                 `'> <p>` +
-                songList.song_name +
+                songList.songName +
                 ` </p>
 </div>
 
@@ -150,19 +174,19 @@ $(document).ready(function() {
 
         for (let selected = 0; selected < picture[i].album.length; selected++) {
           $("#play-this" + selected).click(() => {
+            $(".song-list").removeClass("ifSelected");
+            $("#play-this" + selected).addClass("ifSelected");
             $(".navbar").empty();
             $(".navbar").append(
               `<p>Now playing: ` +
-                picture[i].album[selected].song_name +
+                picture[i].album_Song_name[selected].songName +
                 `</p>
               <audio style='width:100%' controls autoPlay>
 <source src='` +
-                picture[i].path +
+                picture[i].album_path +
                 picture[i].album[selected].song_name +
                 `'><.s</audio>`
             );
-
-            console.log(selected);
           });
         }
       });
@@ -171,19 +195,19 @@ $(document).ready(function() {
 
       for (let selected = 0; selected < picture[i].songs.length; selected++) {
         $("#play-this" + selected).click(() => {
+          $(".song-list").removeClass("ifSelected");
+          $("#play-this" + selected).addClass("ifSelected");
           $(".navbar").empty();
           $(".navbar").append(
             `<p>Now playing: ` +
-              picture[i].songs[selected].song_name +
+              picture[i].nameOfSong[selected].songName +
               `</p>
             <audio style='width:100%' controls autoPlay>
 <source src='` +
-              picture[i].path +
+              picture[i].song_path +
               picture[i].songs[selected].song_name +
               `'><.s</audio>`
           );
-
-          console.log(selected);
         });
       }
 
@@ -219,7 +243,7 @@ $(document).ready(function() {
       $("#" + i).click(() => {
         let to = picture[i];
         let playSelected;
-        console.log(to);
+
         $("#image-Of-artist").empty();
         $("#song").fadeIn();
         $("#image-Of-artist").append(
@@ -234,12 +258,12 @@ $(document).ready(function() {
         });
         $("#showSongs").empty();
         $("#showSongs").append(
-          to.songs.map((song, index) => {
+          to.nameOfSong.map((song, index) => {
             return (
               `<div class='song-list' id='play-this` +
               index +
               `'> <p>` +
-              song.song_name +
+              song.songName +
               ` </p>
               </div>
             
@@ -255,15 +279,15 @@ $(document).ready(function() {
 
         $("#show_songs").click(() => {
           $("#showSongs").empty();
-          console.log("hey");
-          let artistob = picture[i].songs;
+
+          let artistob = picture[i].nameOfSong;
           $("#showSongs").append(
             artistob.map((songList, index) => {
               return (
                 `<div class='song-list' id='play-this` +
                 index +
                 `'> <p>` +
-                songList.song_name +
+                songList.songName +
                 ` </p>
       </div>
     
@@ -278,19 +302,19 @@ $(document).ready(function() {
             selected++
           ) {
             $("#play-this" + selected).click(() => {
+              $(".song-list").removeClass("ifSelected");
+              $("#play-this" + selected).addClass("ifSelected");
               $(".navbar").empty();
               $(".navbar").append(
                 `<p>Now playing: ` +
-                  picture[i].songs[selected].song_name +
+                  picture[i].nameOfSong[selected].songName +
                   `</p>
                 <audio style='width:100%' controls autoPlay>
   <source src='` +
-                  picture[i].path +
+                  picture[i].song_path +
                   picture[i].songs[selected].song_name +
                   `'></audio>`
               );
-
-              console.log(selected);
             });
           }
         });
@@ -300,8 +324,8 @@ $(document).ready(function() {
         $("#show_album").click(() => {
           $("#showSongs").empty();
 
-          let artistob = picture[i].album;
-          console.log(artistob);
+          let artistob = picture[i].album_Song_name;
+
           if (artistob.length === 0) {
             $("#showSongs").append("<div><h3>No Album</h3></div>");
           } else {
@@ -311,7 +335,7 @@ $(document).ready(function() {
                   `<div class='song-list' id='play-this` +
                   index +
                   `'> <p>` +
-                  songList.song_name +
+                  songList.songName +
                   ` </p>
 </div>
 
@@ -327,19 +351,19 @@ $(document).ready(function() {
             selected++
           ) {
             $("#play-this" + selected).click(() => {
+              $(".song-list").removeClass("ifSelected");
+              $("#play-this" + selected).addClass("ifSelected");
               $(".navbar").empty();
               $(".navbar").append(
                 `<p> Now playing: ` +
-                  picture[i].album[selected].song_name +
+                  picture[i].album_Song_name[selected].songName +
                   `</p>
                 <audio style='width:100%' controls autoPlay>
 <source src='` +
-                  picture[i].path +
+                  picture[i].album_path +
                   picture[i].album[selected].song_name +
                   `'></audio>`
               );
-
-              console.log(selected);
             });
           }
         });
@@ -348,19 +372,19 @@ $(document).ready(function() {
 
         for (let selected = 0; selected < picture[i].songs.length; selected++) {
           $("#play-this" + selected).click(() => {
+            $(".song-list").removeClass("ifSelected");
+            $("#play-this" + selected).addClass("ifSelected");
             $(".navbar").empty();
             $(".navbar").append(() => {
               return (
                 `<p>Now playing: ` +
-                picture[i].songs[selected].song_name +
+                picture[i].nameOfSong[selected].songName +
                 `</p>  <audio style='width:100%' controls autoPlay><source src='` +
-                picture[i].path +
+                picture[i].song_path +
                 picture[i].songs[selected].song_name +
                 `'><.s</audio>`
               );
             });
-
-            console.log(selected);
           });
         }
 
@@ -377,7 +401,7 @@ $(document).ready(function() {
     $("#display").empty();
     $("#display").append("<div class='news-button'/>");
     let isThereNews;
-    console.log(Newsfile);
+
     if (Newsfile.news === "") {
       isThereNews = "No news yet";
     } else {

@@ -60,13 +60,14 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: black;
   margin: 10px;
 }
 
 .artist-name {
   position: absolute;
   margin-top: 10px;
+  font-weight: bold;
 }
 #song {
   margin-top: 172px;
@@ -133,6 +134,14 @@ nav {
 #bio {
   line-height: 25px;
 }
+/*----------------------------
+adding class
+------------------------------*/
+.ifSelected {
+  background-color: #0c480c;
+  border: 2px solid lightgreen;
+}
+
 /*-------------------------------
 media queries
 --------------------------------*/
@@ -141,7 +150,7 @@ media queries
     width: 44%;
   }
   .artist-div {
-    width: 44%;
+    width: 43%;
   }
   .artist-image {
     height: 168px;
